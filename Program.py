@@ -1,69 +1,81 @@
 import random
-
+from time import sleep
 
 fin = False
 
 while fin != True:
+    print("Enter your choice \n 1. Rock \n 2. Paper \n 3. Scissors")
 
-    # Generate CPU choice
-    opp = random.choice(("Rock", "Paper", "Scissors"))
+    choice = int(input("Users choice: "))
 
-    # Receive user choice
-    choice = input("Rock, Paper or Scissors?\n")
+    while choice > 3 or choice < 1:
+        choice = int(input("Error, please enter a valid choice: "))
 
-    # Rock
+    if choice == 1:
+        name = 'Rock'
+    elif choice == 2:
+        name = 'Paper'
+    else:
+        name = 'Scissor'
 
-    if choice == "Rock" and opp == "Paper":
-        print(opp + " - CPU WINS!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
-    elif choice == "Rock" and opp == "Scissors":
-        print(opp + " - YOU WIN!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
-    elif choice == "Rock" and opp == "Rock":
-        print(opp + " - IT'S A DRAW!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
+    print("You have chosen: " + name)
 
-    # Paper
+    print("Computer's turn")
+    sleep(1)
 
-    if choice == "Paper" and opp == "Scissors":
-        print(opp + " - CPU WINS!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
-    elif choice == "Paper" and opp == "Rock":
-        print(opp + " - YOU WIN!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
-    elif choice == "Paper" and opp == "Paper":
-        print(opp + " - IT'S A DRAW!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
 
-    # Scissors
+    cpu_choice = random.randint(1,3)
 
-    if choice == "Scissors" and opp == "Rock":
-        print(opp + " - CPU WINS!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
-    elif choice == "Scissors" and opp == "Paper":
-        print(opp + " - YOU WIN!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
-    elif choice == "Scissors" and opp == "Scissors":
-        print(opp + " - IT'S A DRAW!")
-        cont = input("Would you like to play again? Y/N:\n ")
-        if cont == "N":
-            fin = True
+    while cpu_choice == choice:
+        cpu_choice = random.randint(1,3)
+
+    if cpu_choice == 1:
+        cpu_name = 'Rock'
+    elif cpu_choice == 2:
+        cpu_name = 'Paper'
+    else:
+        cpu_name = 'Scissor'
+
+    print("Computer chose: " + cpu_name)
+
+    sleep(1)
+
+    print(name + " vs " + cpu_name)
+
+    sleep(1)
+
+    if ((choice == 1 and cpu_choice == 2) or (choice == 2 and cpu_choice == 1)):
+        print("Paper Wins!")
+        result = 'Paper'
+
+    elif ((choice == 1 and cpu_choice == 3) or (choice == 3 and cpu_choice == 1)):
+        print("Rock Wins!")
+        result = "Rock"
+
+    else:
+        print("Scissors Win!")
+        result = "Scissors"
+
+    sleep(1)
+
+    if result == name:
+        print("YOU WIN!")
+    else:
+        print("COMPUTER WINS!")
+
+    sleep(1)
+
+    print("Would you like to play again? Y/N")
+    answer = input()
+
+    if answer == 'n' or answer == 'N':
+        fin = True
+    else:
+        continue
+
+
+
+
 
 # End the game
 
